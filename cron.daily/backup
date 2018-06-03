@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+#DAY=$(date +%A)
+#
+#if [ -e /run/media/aj/LinuxBackup/daily_changes/incr/$DAY ] ; then
+#  rm -fr /run/media/aj/LinuxBackup/daily_changes/incr/$DAY
+#fi
+#
+#rsync -a --delete --quiet --inplace --backup --backup-dir=/run/media/aj/LinuxBackup/daily_changes/incr/$DAY /run/media/aj/LinuxBackup/daily_changes /run/media/aj/LinuxBackup/backup
+

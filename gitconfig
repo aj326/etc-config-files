@@ -1,0 +1,11 @@
+[user]
+	email = ahmed.jehairan@gmail.com
+	name = Ahmed Jehairan
+[core]
+	editor = vim -f
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+

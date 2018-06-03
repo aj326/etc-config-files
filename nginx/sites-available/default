@@ -1,0 +1,12 @@
+server{
+        listen 127.0.0.1:9070;
+        root /usr/share/nginx/onions/myonion;
+        index index.html index.html;
+
+        server_name foo.bar; # We'll amend this later
+
+        location / {
+                autoindex on;
+        }
+
+}

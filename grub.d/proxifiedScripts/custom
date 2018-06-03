@@ -1,0 +1,15 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+menuentry "Windows 10 Boot (on /dev/nvme0n1p1)" --class windows --class os $menuentry_id_option 'osprober-efi-A2A5-CC7A' {
+	insmod part_gpt
+	insmod fat
+	if [ x$feature_platform_search_hint = xy ]; then
+	  search --no-floppy --fs-uuid --set=root  A2A5-CC7A
+	else
+	  search --no-floppy --fs-uuid --set=root A2A5-CC7A
+	fi
+	chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+}

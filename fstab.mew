@@ -1,0 +1,8 @@
+#Grub:           	/dev/nvme0n1p1                                                                                                                
+UUID=A2A5-CC7A                             /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro  0  2
+#Arhc	Root:           /dev/nvme0n1p5                                                                                                
+UUID=17418301-499a-4e5a-a772-df782f29e81c  /               ext4            rw,relatime,data=ordered                                                                                   0  1
+#Ubuntu	Root:           /dev/nvme0n1p6                                                                                                
+UUID=a886d7ce-bc01-44f2-9cf6-e18772394489  /ubuntu         ext4            rw,relatime,data=ordered                                                                                   0  1
+#Windows:		/dev/nvme0n1p3                                                                                                                                
+UUID=1E9AB3039AB2D70D                      /windows        ntfs-3g         defaults					                                                              0  0

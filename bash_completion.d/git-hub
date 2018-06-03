@@ -1,0 +1,154 @@
+
+__git_hub_get_issues()
+{
+	git hub issue list 2> /dev/null |
+			sed -n 's/^\[\([0-9]\+\)\] .*$/\1/p' | 	tr '\n' ' '
+}
+
+__git_hub_get_pulls()
+{
+	git hub pull list 2> /dev/null |
+			sed -n 's/^\[\([0-9]\+\)\] .*$/\1/p' | tr '\n' ' '
+}
+
+_git_hub ()
+{
+	local subcommand="$(__git_find_on_cmdline "clone issue pull setup")"
+	if [ -z "$subcommand" ]; then
+		case "$cur" in
+		--*)
+			__gitcomp "--help --version --verbose --silent "
+			;;
+		*)
+			__gitcomp "clone issue pull setup"
+			;;
+		esac
+	else
+		case "$subcommand" in
+		clone)
+			local subsubcommand="$(__git_find_on_cmdline "")"
+			if [ -z "$subsubcommand" ]; then
+				case "$cur" in
+				--*)
+					__gitcomp "--help --triangular --no-triangular --upstreamremote= --forkremote= "
+					;;
+				*)
+					__gitcomp ""
+					;;
+				esac
+			else
+				case "$subsubcommand,$cur" in
+				*)
+					COMPREPLY=()
+					;;
+				esac
+			fi
+			;;
+		issue)
+			local subsubcommand="$(__git_find_on_cmdline "close comment list new show update")"
+			if [ -z "$subsubcommand" ]; then
+				case "$cur" in
+				--*)
+					__gitcomp "--help "
+					;;
+				*)
+					__gitcomp "close comment list new show update"
+					;;
+				esac
+			else
+				case "$subsubcommand,$cur" in
+				close,--*)
+					__gitcomp "--help --edit-message --message= "
+					;;
+				comment,--*)
+					__gitcomp "--help --message= "
+					;;
+				list,--*)
+					__gitcomp "--help --closed --created-by-me --assigned-to-me "
+					;;
+				new,--*)
+					__gitcomp "--help --message= --label= --assign= --milestone= "
+					;;
+				show,--*)
+					__gitcomp "--help --summary "
+					;;
+				update,--*)
+					__gitcomp "--help --edit-message --open --close --message= --label= --assign= --milestone= "
+					;;
+				*)
+					__gitcomp "$(__git_hub_get_issues)"
+					;;
+				esac
+			fi
+			;;
+		pull)
+			local subsubcommand="$(__git_find_on_cmdline "attach checkout close comment list new rebase show update")"
+			if [ -z "$subsubcommand" ]; then
+				case "$cur" in
+				--*)
+					__gitcomp "--help "
+					;;
+				*)
+					__gitcomp "attach checkout close comment list new rebase show update"
+					;;
+				esac
+			else
+				case "$subsubcommand,$cur" in
+				attach,--*)
+					__gitcomp "--help --edit-message --force-push --message= --base= --create-branch= "
+					;;
+				checkout,--*)
+					__gitcomp "--help "
+					;;
+				close,--*)
+					__gitcomp "--help --edit-message --message= "
+					;;
+				comment,--*)
+					__gitcomp "--help --message= "
+					;;
+				list,--*)
+					__gitcomp "--help --closed --created-by-me --assigned-to-me "
+					;;
+				new,--*)
+					__gitcomp "--help --force-push --message= --base= --create-branch= "
+					;;
+				rebase,--*)
+					__gitcomp "--help --continue --abort --skip --edit-message --force-push --pause --stash-all --delete-branch --message= "
+					;;
+				show,--*)
+					__gitcomp "--help --summary "
+					;;
+				update,--*)
+					__gitcomp "--help --edit-message --open --close --message= --label= --assign= --milestone= "
+					;;
+				*)
+					__gitcomp "$(__git_hub_get_pulls)"
+					;;
+				esac
+			fi
+			;;
+		setup)
+			local subsubcommand="$(__git_find_on_cmdline "")"
+			if [ -z "$subsubcommand" ]; then
+				case "$cur" in
+				--*)
+					__gitcomp "--help --global --system --username= --password= --baseurl= "
+					;;
+				*)
+					__gitcomp ""
+					;;
+				esac
+			else
+				case "$subsubcommand,$cur" in
+				*)
+					COMPREPLY=()
+					;;
+				esac
+			fi
+			;;
+		*)
+			COMPREPLY=()
+			;;
+		esac
+	fi
+}

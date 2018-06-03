@@ -1,0 +1,10 @@
+# written by pptpsetup
+pty "/usr/sbin/pptp nl315.nordvpn.com --nolaunchpppd"
+lock
+noauth
+nobsdcomp
+nodeflate
+name ahmed24633@gmail.com
+remotename my_tunnel
+ipparam my_tunnel
+require-mppe-128

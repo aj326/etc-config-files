@@ -1,0 +1,5 @@
+"current_name";"default_name"
+"proxifiedScripts/os-prober";"30_os-prober"
+"proxifiedScripts/custom";"40_custom"
+"43_custom";"41_custom"
+"06_grub-customizer_menu_color_helper";"6_grub-customizer_menu_color_helper"

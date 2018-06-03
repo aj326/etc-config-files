@@ -1,0 +1,6 @@
+#!/bin/sh
+#THIS IS A GRUB PROXY SCRIPT
+'/etc/grub.d/proxifiedScripts/custom' | /etc/grub.d/bin/grubcfg_proxy "-*
+-#text
++'Windows 10 Boot (on /dev/nvme0n1p1)'~6902ddbde1057cb1f6890fe353619904~
+"
